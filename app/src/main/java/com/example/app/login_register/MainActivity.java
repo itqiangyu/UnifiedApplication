@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.login_register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,11 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.example.app.R;
+
+/**
+ * 主 activity
+ */
 public class MainActivity extends AppCompatActivity {
     private TextView tv_back;
 
@@ -15,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getSupportActionBar().hide();
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         init();
     }
 
@@ -27,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //登录界面销毁
                 MainActivity.this.finish();
-                Intent intent = new Intent(MainActivity.this,login.class);
+                Intent intent = new Intent(MainActivity.this, login.class);
                 startActivity(intent);
             }
         });

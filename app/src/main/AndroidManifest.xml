@@ -9,20 +9,50 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".register"
-            android:screenOrientation="landscape">
+        <!--android:theme="@style/AppTheme"：已修改，去掉顶部标题栏以及状态栏-->
 
+        <!--注册-->
+        <activity android:name=".login_register.register"
+            android:screenOrientation="landscape">
         </activity>
-        <activity android:name=".login"
+        <!--登录-->
+        <activity android:name=".login_register.login"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="landscape"></activity>
+        <!--顶部状态栏-->
+        <activity android:name=".login_register.MainActivity"
+            android:screenOrientation="landscape" />
+
+        <!--第五题：环境指标-->
+        <activity
+            android:name=".five_six_twentyfive.five.HJZBActivity"
+            android:screenOrientation="landscape" />
+
+        <!--第六题：实时显示-->
+        <activity
+            android:name=".five_six_twentyfive.six.SSXSActivity"
+            android:screenOrientation="landscape" />
+
+        <!--第25题：路况查询-->
+        <activity
+            android:name=".five_six_twentyfive.twentyfive.LKCXActivity"
+            android:screenOrientation="landscape" />
+
+        <!--二氧化碳、道路状态、光照、PM2.5、湿度、温度-->
+        <activity android:name=".five_six_twentyfive.CoFragment" />
+        <activity android:name=".five_six_twentyfive.DLZT_Fragment" />
+        <activity android:name=".five_six_twentyfive.GzFragment" />
+        <activity android:name=".five_six_twentyfive.PmFragment" />
+        <activity android:name=".five_six_twentyfive.SdFragment" />
+        <activity android:name=".five_six_twentyfive.WdFragment" />
+        <!--登录进去的主界面-->
+        <activity
+            android:name=".five_six_twentyfive.Main"
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>

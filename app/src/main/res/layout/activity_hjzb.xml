@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".five_six_twentyfive.five.HJZBActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#0099cc"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@mipmap/menu"
+            android:onClick="menu_btn">
+
+        </Button>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:text="环境指标"
+            android:textColor="#ffffff"
+            android:textSize="40sp">
+
+        </TextView>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </View>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="80dp"
+        android:padding="40dp">
+
+        <RelativeLayout
+            android:id="@+id/view1"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="40dp"
+            android:background="#00FF34">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="温度"
+                android:textColor="#000000"
+                android:textSize="30sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="0"
+                android:gravity="center"
+                android:background="@drawable/btn_bg"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp">
+
+            </TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/view2"
+            android:layout_toRightOf="@+id/view1"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="40dp"
+            android:background="#00FF34">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="湿度"
+                android:textColor="#000000"
+                android:textSize="30sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="0"
+                android:gravity="center"
+                android:background="@drawable/btn_bg"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp">
+
+            </TextView>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/view3"
+            android:layout_toRightOf="@+id/view2"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="40dp"
+            android:background="#00FF34">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="光照"
+                android:textColor="#000000"
+                android:textSize="30sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="0"
+                android:gravity="center"
+                android:background="@drawable/btn_bg"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp">
+
+            </TextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/view4"
+            android:layout_below="@+id/view1"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="60dp"
+            android:background="#00FF34">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CO2"
+                android:textColor="#000000"
+                android:textSize="30sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="0"
+                android:gravity="center"
+                android:background="@drawable/btn_bg"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp">
+
+            </TextView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/view5"
+            android:layout_below="@+id/view2"
+            android:layout_toRightOf="@+id/view4"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="60dp"
+            android:background="#00FF34">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PM2.5"
+                android:textColor="#000000"
+                android:textSize="30sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv5"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="0"
+                android:gravity="center"
+                android:background="@drawable/btn_bg"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp">
+
+            </TextView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/view6"
+            android:layout_below="@+id/view3"
+            android:layout_toRightOf="@+id/view5"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:background="#00FF34">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="道路状态"
+                android:textColor="#000000"
+                android:textSize="30sp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv6"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="0"
+                android:gravity="center"
+                android:background="@drawable/btn_bg"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp">
+
+            </TextView>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".five_six_twentyfive.six.SSXSActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#0099cc"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@mipmap/menu"
+            android:onClick="menu_btn">
+
+        </Button>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:gravity="center"
+            android:text="实时显示"
+            android:textColor="#ffffff"
+            android:textSize="40sp">
+
+        </TextView>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </View>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical">
+
+        <!--<TextView
+            android:id="@+id/wdtab"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toTopOf="@+id/chart"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="温度"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="#000000"
+            android:background="#ffffff">
+
+        </TextView>
+
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"/>
+            -->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/mainViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <View
+                android:id="@+id/centerView"
+                android:layout_width="2dp"
+                android:layout_height="2dp"
+                android:layout_centerInParent="true">
+            </View>
+
+            <Button
+                android:id="@+id/toWD"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_bg1"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/toSD">
+            </Button>
+
+            <Button
+                android:id="@+id/toSD"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_bg"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/toGZ"
+                android:layout_marginLeft="8dp">
+            </Button>
+
+            <Button
+                android:id="@+id/toGZ"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_bg"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/centerView"
+                android:layout_marginRight="3dp"
+                android:layout_marginLeft="8dp">
+            </Button>
+
+            <Button
+                android:id="@+id/toCO2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_bg"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/centerView"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="8dp">
+            </Button>
+
+            <Button
+                android:id="@+id/toPM"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_bg"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/toCO2"
+                android:layout_marginRight="8dp">
+            </Button>
+
+            <Button
+                android:id="@+id/toDL"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/btn_bg"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/toPM">
+            </Button>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

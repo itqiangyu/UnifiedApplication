@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.login_register;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.app.R;
+import com.example.app.five_six_twentyfive.Main;
+
 public class login extends AppCompatActivity {
     private TextView tv_main_title;//标题
     private TextView tv_back, tv_register, tv_find_psw;//返回键,显示的注册，找回密码
@@ -26,8 +29,8 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //隐藏标题状态栏
-        getSupportActionBar().hide();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        getSupportActionBar().hide();
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         init();
     }
@@ -104,7 +107,7 @@ public class login extends AppCompatActivity {
                     //销毁登录界面
                     login.this.finish();
                     //跳转到主界面，登录成功的状态传递到 MainActivity 中
-                    startActivity(new Intent(login.this, MainActivity.class));
+                    startActivity(new Intent(login.this, Main.class));
                     return;
                 } else if ((spPsw != null && !TextUtils.isEmpty(spPsw) && !md5Psw.equals(spPsw))) {
                     Toast.makeText(login.this, "输入的用户名和密码不一致", Toast.LENGTH_SHORT).show();

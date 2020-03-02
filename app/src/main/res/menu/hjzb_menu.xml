@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--菜单列表-->
+    <item
+        android:title="首页"
+        android:id="@+id/menu">
+
+    </item>
+
+    <item
+        android:title="实时显示"
+        android:id="@+id/ssxs">
+    </item>
+
+    <item
+        android:title="路口查询"
+        android:id="@+id/lkcx">
+    </item>
+
+</menu>

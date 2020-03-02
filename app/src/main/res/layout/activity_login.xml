@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login"
     android:orientation="vertical"
-    tools:context=".login">
+    tools:context=".login_register.login">
     <!--标题栏-->
     <include layout="@layout/activity_main">
 
@@ -24,7 +24,7 @@
     android:drawableLeft="@drawable/ic_launcher_background"-->
     <EditText
         android:id="@+id/et_user_name"
-        android:layout_width="fill_parent"
+        android:layout_width="400dp"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
@@ -44,7 +44,7 @@
     android:drawableLeft="@drawable/ic_launcher_background"-->
     <EditText
         android:id="@+id/et_psw"
-        android:layout_width="fill_parent"
+        android:layout_width="400dp"
         android:layout_height="48dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
@@ -61,7 +61,7 @@
     <!--按钮-->
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="fill_parent"
+        android:layout_width="500dp"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="35dp"
