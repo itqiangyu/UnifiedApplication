@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,13 +14,33 @@ import android.widget.Toast;
 
 import com.example.app.R;
 import com.example.app.five_six_twentyfive.Main;
+import com.example.app.retrofit.ILogin;
+import com.example.app.retrofit.pojo.Result;
 
-public class login extends AppCompatActivity {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class Login extends AppCompatActivity {
     private TextView tv_main_title;//标题
     private TextView tv_back, tv_register, tv_find_psw;//返回键,显示的注册，找回密码
     private Button btn_login;//登录按钮
-    private String userName, psw, spPsw;//获取的用户名，密码，加密密码
-    private EditText et_user_name, et_psw,etEt_phone;//编辑框
+    private String userName, password;//获取的用户名，密码
+    private EditText et_user_name, et_psw, etEt_phone;//编辑框
+
+    /**
+     * 创建Register实例
+     */
+    private Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl("http://47.106.99.53/application/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    /**
+     * 创建 登录接口 的实例
+     */
+    private ILogin request = retrofit.create(ILogin.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +72,7 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //登录界面销毁
-                login.this.finish();
+                Login.this.finish();
             }
         });
         //立即注册控件的点击事件
@@ -61,7 +80,7 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //为了跳转到注册界面，并实现注册功能
-                Intent intent = new Intent(login.this, register.class);
+                Intent intent = new Intent(Login.this, Register.class);
                 startActivityForResult(intent, 1);
             }
         });
@@ -76,58 +95,74 @@ public class login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //开始登录，获取用户名和密码 getText().toString().trim();
+                //获取用户名和密码 getText().toString().trim();
                 userName = et_user_name.getText().toString().trim();
-                psw = et_psw.getText().toString().trim();
-                //对当前用户输入的密码进行MD5加密再进行比对判断, MD5Utils.md5( ); psw 进行加密判断是否一致
-                String md5Psw = MD5Utils.md5(psw);
-                // md5Psw ; spPsw 为 根据从SharedPreferences中用户名读取密码
-                // 定义方法 readPsw为了读取用户名，得到密码
-                spPsw = readPsw(userName);
+                password = et_psw.getText().toString().trim();
+
                 // TextUtils.isEmpty
                 if (TextUtils.isEmpty(userName)) {
-                    Toast.makeText(login.this, "请输入用户名", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "请输入用户名", Toast.LENGTH_SHORT).show();
                     return;
-                } else if (TextUtils.isEmpty(psw)) {
-                    Toast.makeText(login.this, "请输入密码", Toast.LENGTH_SHORT).show();
-                    return;
-                    // md5Psw.equals(); 判断，输入的密码加密后，是否与保存在SharedPreferences中一致
-                } else if (md5Psw.equals(spPsw)) {
-                    //一致登录成功
-                    Toast.makeText(login.this, "登录成功", Toast.LENGTH_SHORT).show();
-                    //保存登录状态，在界面保存登录的用户名 定义个方法 saveLoginStatus boolean 状态 , userName 用户名;
-                    saveLoginStatus(true, userName);
-                    //登录成功后关闭此页面进入主页
-                    Intent data = new Intent();
-                    //datad.putExtra( ); name , value ;
-                    data.putExtra("isLogin", true);
-                    //RESULT_OK为Activity系统常量，状态码为-1
-                    // 表示此页面下的内容操作成功将data返回到上一页面，如果是用back返回过去的则不存在用setResult传递data值
-                    setResult(RESULT_OK, data);
-                    //销毁登录界面
-                    login.this.finish();
-                    //跳转到主界面，登录成功的状态传递到 MainActivity 中
-                    startActivity(new Intent(login.this, Main.class));
-                    return;
-                } else if ((spPsw != null && !TextUtils.isEmpty(spPsw) && !md5Psw.equals(spPsw))) {
-                    Toast.makeText(login.this, "输入的用户名和密码不一致", Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    Toast.makeText(login.this, "此用户名不存在", Toast.LENGTH_SHORT).show();
                 }
+                if (TextUtils.isEmpty(password)) {
+                    Toast.makeText(Login.this, "请输入密码", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Call<Result> resultCall = request.login(userName, password);
+                resultCall.enqueue(new Callback<Result>() {
+                    /**
+                     * 请求成功回调函数
+                     * @param call
+                     * @param response
+                     */
+                    @Override
+                    public void onResponse(Call<Result> call, Response<Result> response) {
+                        Result body = response.body();
+//                        System.out.println(response.headers());
+//                        System.out.println(response.toString());
+//                        System.out.println(body);
+                        if (body == null) {
+                            Toast.makeText(Login.this, "登录异常，请重试。", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        System.out.println(body.getStatus());
+
+                        if (body.getStatus() != 200) {
+                            // 登录失败
+                            Toast.makeText(Login.this, body.getMsg(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        // 否则登录成功
+                        Toast.makeText(Login.this, body.getMsg(), Toast.LENGTH_SHORT).show();
+
+                        // 保存登录状态，在界面保存登录的用户名 定义个方法 saveLoginStatus boolean 状态 , userName 用户名;
+                        saveLoginStatus(true, userName);
+                        //登录成功后关闭此页面进入主页
+                        Intent data = new Intent();
+                        //datad.putExtra( ); name , value ;
+                        data.putExtra("isLogin", true);
+                        //RESULT_OK为Activity系统常量，状态码为-1
+                        // 表示此页面下的内容操作成功将data返回到上一页面，如果是用back返回过去的则不存在用setResult传递data值
+                        setResult(RESULT_OK, data);
+                        //销毁登录界面
+                        Login.this.finish();
+                        //跳转到主界面，登录成功的状态传递到 MainActivity 中
+                        startActivity(new Intent(Login.this, Main.class));
+                    }
+
+                    /**
+                     * 请求失败的回调函数
+                     * @param call
+                     * @param throwable
+                     */
+                    @Override
+                    public void onFailure(Call<Result> call, Throwable t) {
+                        Toast.makeText(Login.this, "网络错误，请检查网络。", Toast.LENGTH_SHORT).show();
+                        System.out.println("登录错误：" + t.getMessage());
+                    }
+                });
             }
         });
-    }
-
-    /**
-     * 从SharedPreferences中根据用户名读取密码
-     */
-    private String readPsw(String userName) {
-        //getSharedPreferences("loginInfo",MODE_PRIVATE);
-        //"loginInfo",mode_private; MODE_PRIVATE表示可以继续写入
-        SharedPreferences sp = getSharedPreferences("loginInfo", MODE_PRIVATE);
-        //sp.getString() userName, "";
-        return sp.getString(userName, "");
     }
 
     /**

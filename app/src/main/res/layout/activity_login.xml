@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login"
     android:orientation="vertical"
-    tools:context=".login_register.login">
+    tools:context=".login_register.Login">
     <!--标题栏-->
     <include layout="@layout/activity_main">
 
@@ -71,7 +71,7 @@
         android:text="登 录"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
-    <!--显示tv register , find_psw -->
+    <!--显示tv IRegister , find_psw -->
 
     <LinearLayout
         android:layout_width="fill_parent"
