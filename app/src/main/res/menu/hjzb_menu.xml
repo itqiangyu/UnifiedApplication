@@ -13,7 +13,7 @@
     </item>
 
     <item
-        android:title="路口查询"
+        android:title="路况查询"
         android:id="@+id/lkcx">
     </item>
 

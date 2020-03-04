@@ -6,6 +6,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,15 +14,35 @@ import com.example.app.R;
 import com.example.app.five_six_twentyfive.five.HJZBActivity;
 import com.example.app.five_six_twentyfive.six.SSXSActivity;
 import com.example.app.five_six_twentyfive.twentyfive.LKCXActivity;
+import com.example.app.retrofit.IDataInformation;
+import com.example.app.retrofit.pojo.DataInformation;
 
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Main extends AppCompatActivity {
 
     public Timer time1;
-    public static int num1, num2, num3, num4, num5, num6, num7, num8;
+    // 温度、湿度、光照、二氧化碳、PM2.5、道路状态1、道路状态2、道路状态3
+    public static Integer wendu, shidu, guangzhao, co, pm, num1, num2, num3;
+
+    /**
+     * 创建Register实例
+     */
+    private Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl("http://47.106.99.53/application/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    /**
+     * 代理模式：创建 接收数据接口 实例
+     */
+    private IDataInformation request = retrofit.create(IDataInformation.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,15 +90,45 @@ public class Main extends AppCompatActivity {
         time1.schedule(new TimerTask() {
             @Override
             public void run() {
-                Random random = new Random();
-                num1 = random.nextInt(9) + 22;//温度
-                num2 = random.nextInt(10) + 60;//湿度
-                num3 = random.nextInt(4000);//光照
-                num4 = random.nextInt(6500);//CO2
-                num5 = random.nextInt(110);//PM2.5
-                num6 = random.nextInt(4) + 1;//1号道路
-                num7 = random.nextInt(4) + 1;//2号道路
-                num8 = random.nextInt(4) + 1;//3号道路
+
+                Call<DataInformation> resultCall = request.receiveData();
+                resultCall.enqueue(new Callback<DataInformation>() {
+                    /**
+                     * 请求成功回调函数
+                     * @param call
+                     * @param response
+                     */
+                    @Override
+                    public void onResponse(Call<DataInformation> call, Response<DataInformation> response) {
+                        DataInformation body = response.body();
+
+                        if (body == null) {
+                            Toast.makeText(Main.this, "请求异常，加载数据失败。", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+//                        Toast.makeText(Main.this, "加载数据成功，请稍等。", Toast.LENGTH_SHORT).show();
+                        // 从服务器获取数据并设置到本地
+                        wendu = body.getWendu();
+                        shidu = body.getShidu();
+                        guangzhao = body.getGuangzhao();
+                        co = body.getCo();
+                        pm = body.getPm();
+                        num1 = body.getNum1();
+                        num2 = body.getNum2();
+                        num3 = body.getNum3();
+                    }
+
+                    /**
+                     * 请求失败的回调函数
+                     * @param call
+                     * @param throwable
+                     */
+                    @Override
+                    public void onFailure(Call<DataInformation> call, Throwable t) {
+                        Toast.makeText(Main.this, "网络错误，加载数据失败。", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         }, 0, 3000);
     }

@@ -55,7 +55,7 @@ public class CoFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            list.add(Main.num4);
+                            list.add(Main.co);
                             dynamicLineChart.addEntry(list);
                             list.clear();
                         }

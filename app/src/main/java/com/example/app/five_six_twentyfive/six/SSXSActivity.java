@@ -168,48 +168,55 @@ public class SSXSActivity extends AppCompatActivity implements View.OnClickListe
      *由ViewPager的滑动修改底部导航Text的颜色
      */
     private void changeBgColor(int position) {
-        if (position == 0) {
-            toWD.setBackgroundResource(R.drawable.btn_bg1);
-            toSD.setBackgroundResource(R.drawable.btn_bg);
-            toGZ.setBackgroundResource(R.drawable.btn_bg);
-            toCO2.setBackgroundResource(R.drawable.btn_bg);
-            toPM.setBackgroundResource(R.drawable.btn_bg);
-            toDL.setBackgroundResource(R.drawable.btn_bg);
-        } else if (position == 1) {
-            toWD.setBackgroundResource(R.drawable.btn_bg);
-            toSD.setBackgroundResource(R.drawable.btn_bg1);
-            toGZ.setBackgroundResource(R.drawable.btn_bg);
-            toCO2.setBackgroundResource(R.drawable.btn_bg);
-            toPM.setBackgroundResource(R.drawable.btn_bg);
-            toDL.setBackgroundResource(R.drawable.btn_bg);
-        } else if (position == 2) {
-            toWD.setBackgroundResource(R.drawable.btn_bg);
-            toSD.setBackgroundResource(R.drawable.btn_bg);
-            toGZ.setBackgroundResource(R.drawable.btn_bg1);
-            toCO2.setBackgroundResource(R.drawable.btn_bg);
-            toPM.setBackgroundResource(R.drawable.btn_bg);
-            toDL.setBackgroundResource(R.drawable.btn_bg);
-        } else if (position == 3) {
-            toWD.setBackgroundResource(R.drawable.btn_bg);
-            toSD.setBackgroundResource(R.drawable.btn_bg);
-            toGZ.setBackgroundResource(R.drawable.btn_bg);
-            toCO2.setBackgroundResource(R.drawable.btn_bg1);
-            toPM.setBackgroundResource(R.drawable.btn_bg);
-            toDL.setBackgroundResource(R.drawable.btn_bg);
-        } else if (position == 4) {
-            toWD.setBackgroundResource(R.drawable.btn_bg);
-            toSD.setBackgroundResource(R.drawable.btn_bg);
-            toGZ.setBackgroundResource(R.drawable.btn_bg);
-            toCO2.setBackgroundResource(R.drawable.btn_bg);
-            toPM.setBackgroundResource(R.drawable.btn_bg1);
-            toDL.setBackgroundResource(R.drawable.btn_bg);
-        } else if (position == 5) {
-            toWD.setBackgroundResource(R.drawable.btn_bg);
-            toSD.setBackgroundResource(R.drawable.btn_bg);
-            toGZ.setBackgroundResource(R.drawable.btn_bg);
-            toCO2.setBackgroundResource(R.drawable.btn_bg);
-            toPM.setBackgroundResource(R.drawable.btn_bg);
-            toDL.setBackgroundResource(R.drawable.btn_bg1);
+        switch (position) {
+            case 0:
+                toWD.setBackgroundResource(R.drawable.btn_bg1);
+                toSD.setBackgroundResource(R.drawable.btn_bg);
+                toGZ.setBackgroundResource(R.drawable.btn_bg);
+                toCO2.setBackgroundResource(R.drawable.btn_bg);
+                toPM.setBackgroundResource(R.drawable.btn_bg);
+                toDL.setBackgroundResource(R.drawable.btn_bg);
+                break;
+            case 1:
+                toWD.setBackgroundResource(R.drawable.btn_bg);
+                toSD.setBackgroundResource(R.drawable.btn_bg1);
+                toGZ.setBackgroundResource(R.drawable.btn_bg);
+                toCO2.setBackgroundResource(R.drawable.btn_bg);
+                toPM.setBackgroundResource(R.drawable.btn_bg);
+                toDL.setBackgroundResource(R.drawable.btn_bg);
+                break;
+            case 2:
+                toWD.setBackgroundResource(R.drawable.btn_bg);
+                toSD.setBackgroundResource(R.drawable.btn_bg);
+                toGZ.setBackgroundResource(R.drawable.btn_bg1);
+                toCO2.setBackgroundResource(R.drawable.btn_bg);
+                toPM.setBackgroundResource(R.drawable.btn_bg);
+                toDL.setBackgroundResource(R.drawable.btn_bg);
+                break;
+            case 3:
+                toWD.setBackgroundResource(R.drawable.btn_bg);
+                toSD.setBackgroundResource(R.drawable.btn_bg);
+                toGZ.setBackgroundResource(R.drawable.btn_bg);
+                toCO2.setBackgroundResource(R.drawable.btn_bg1);
+                toPM.setBackgroundResource(R.drawable.btn_bg);
+                toDL.setBackgroundResource(R.drawable.btn_bg);
+                break;
+            case 4:
+                toWD.setBackgroundResource(R.drawable.btn_bg);
+                toSD.setBackgroundResource(R.drawable.btn_bg);
+                toGZ.setBackgroundResource(R.drawable.btn_bg);
+                toCO2.setBackgroundResource(R.drawable.btn_bg);
+                toPM.setBackgroundResource(R.drawable.btn_bg1);
+                toDL.setBackgroundResource(R.drawable.btn_bg);
+                break;
+            case 5:
+                toWD.setBackgroundResource(R.drawable.btn_bg);
+                toSD.setBackgroundResource(R.drawable.btn_bg);
+                toGZ.setBackgroundResource(R.drawable.btn_bg);
+                toCO2.setBackgroundResource(R.drawable.btn_bg);
+                toPM.setBackgroundResource(R.drawable.btn_bg);
+                toDL.setBackgroundResource(R.drawable.btn_bg1);
+                break;
         }
     }
 

@@ -55,7 +55,7 @@ public class SdFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            list.add(Main.num2);
+                            list.add(Main.shidu);
                             dynamicLineChart.addEntry(list);
                             list.clear();
                         }

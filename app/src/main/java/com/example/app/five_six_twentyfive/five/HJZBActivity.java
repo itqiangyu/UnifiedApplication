@@ -29,8 +29,8 @@ import java.util.TimerTask;
  */
 public class HJZBActivity extends AppCompatActivity {
 
-    private RelativeLayout v1,v2,v3,v4,v5,v6;
-    private Timer time1,time2,time3,time4,time5,time6;
+    private RelativeLayout v1, v2, v3, v4, v5, v6;
+    private Timer time1, time2, time3, time4, time5, time6;
     private TextView textv1;
     //public static int num1,num2,num3,num4,num5,num6;
 
@@ -47,8 +47,8 @@ public class HJZBActivity extends AppCompatActivity {
         dlzt();
     }
 
-    public  void  menu_btn(View view){
-        PopupMenu menubtn = new PopupMenu(this,view);
+    public void menu_btn(View view) {
+        PopupMenu menubtn = new PopupMenu(this, view);
         // 这里的view代表popupMenu需要依附的view
         // 获取布局文件
         MenuInflater inflater = menubtn.getMenuInflater();
@@ -76,77 +76,78 @@ public class HJZBActivity extends AppCompatActivity {
             }
         });
 
-        inflater.inflate(R.menu.hjzb_menu,menubtn.getMenu());/** 加载menu文件 **/
+        inflater.inflate(R.menu.hjzb_menu, menubtn.getMenu());/** 加载menu文件 **/
         menubtn.show();// 显示控件
     }
 
-    public void wd(){/**温度**/
-        time1=new Timer();
+    public void wd() {/**温度**/
+        time1 = new Timer();
         time1.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(1);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
-    public void sd(){/**湿度**/
-        time2=new Timer();
+    public void sd() {/**湿度**/
+        time2 = new Timer();
         time2.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(2);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
-    public void gz(){/**光照**/
-        time3=new Timer();
+    public void gz() {/**光照**/
+        time3 = new Timer();
         time3.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(3);
             }
-        },0,3000);
+        }, 0, 3000);
     }
-    public void co2(){/**二氧化碳**/
-        time4=new Timer();
+
+    public void co2() {/**二氧化碳**/
+        time4 = new Timer();
         time4.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(4);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
-    public void pm(){/**PM2.5**/
-        time5=new Timer();
+    public void pm() {/**PM2.5**/
+        time5 = new Timer();
         time5.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(5);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
-    public void dlzt(){/**道路状态：默认显示一号道路**/
-        time6=new Timer();
+    public void dlzt() {/**道路状态：默认显示一号道路**/
+        time6 = new Timer();
         time6.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(6);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
     @SuppressLint("HandlerLeak")
-    Handler handler = new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             v1 = findViewById(R.id.view1);
@@ -158,152 +159,94 @@ public class HJZBActivity extends AppCompatActivity {
 
             switch (msg.what) {
                 case 1:
-                    if (Main.num1 >= 29){
-                        v1.setBackgroundColor(Color.parseColor("#FF0103"));
-                    }else if (Main.num1 > 26 && Main.num1 < 29){
-                        v1.setBackgroundColor(Color.parseColor("#FFF000"));
-                    }else if (Main.num1 <= 26 ){
-                        v1.setBackgroundColor(Color.parseColor("#00FF34"));
-                    }
+                    scopeNum(v1, Main.wendu, 29, 26);
                     textv1 = findViewById(R.id.tv1);
-                    textv1.setText(String.valueOf(Main.num1));
+                    textv1.setText(String.valueOf(Main.wendu));
                     break;
                 case 2:
-                    if (Main.num2 >= 69){
-                        v2.setBackgroundColor(Color.parseColor("#FF0103"));
-                    }else if (Main.num2 > 66 && Main.num2 < 69){
-                        v2.setBackgroundColor(Color.parseColor("#FFF000"));
-                    }else if (Main.num2 <= 64 ){
-                        v2.setBackgroundColor(Color.parseColor("#00FF34"));
-                    }
+                    scopeNum(v2, Main.shidu, 69, 64);
                     textv1 = findViewById(R.id.tv2);
-                    textv1.setText(String.valueOf(Main.num2));
+                    textv1.setText(String.valueOf(Main.shidu));
                     break;
                 case 3:
-                    if (Main.num3 >= 3000){
-                        v3.setBackgroundColor(Color.parseColor("#FF0103"));
-                    }else if (Main.num3 > 1000 && Main.num3 < 2000){
-                        v3.setBackgroundColor(Color.parseColor("#FFF000"));
-                    }else if (Main.num3 <= 1000){
-                        v3.setBackgroundColor(Color.parseColor("#00FF34"));
-                    }
+                    scopeNum(v3, Main.guangzhao, 3000, 1000);
                     textv1 = findViewById(R.id.tv3);
-                    textv1.setText(String.valueOf(Main.num3));
+                    textv1.setText(String.valueOf(Main.guangzhao));
                     break;
                 case 4:
-                    if (Main.num4 >= 6000){
-                        v4.setBackgroundColor(Color.parseColor("#FF0103"));
-                    }else if (Main.num4 > 3000 && Main.num4 < 6000){
-                        v4.setBackgroundColor(Color.parseColor("#FFF000"));
-                    }else if (Main.num4 <= 3000 ){
-                        v4.setBackgroundColor(Color.parseColor("#00FF34"));
-                    }
+                    scopeNum(v4, Main.co, 6000, 3000);
                     textv1 = findViewById(R.id.tv4);
-                    textv1.setText(String.valueOf(Main.num4));
+                    textv1.setText(String.valueOf(Main.co));
                     break;
                 case 5:
-                    if (Main.num5 >= 100){
-                        v5.setBackgroundColor(Color.parseColor("#FF0103"));
-                    }else if (Main.num5 > 30 && Main.num5 < 100){
-                        v5.setBackgroundColor(Color.parseColor("#FFF000"));
-                    }else if (Main.num5 <= 30 ){
-                        v5.setBackgroundColor(Color.parseColor("#00FF34"));
-                    }
+                    scopeNum(v5, Main.pm, 100, 30);
                     textv1 = findViewById(R.id.tv5);
-                    textv1.setText(String.valueOf(Main.num5));
+                    textv1.setText(String.valueOf(Main.pm));
                     break;
                 case 6:
-                    if (Main.num6 >0 && Main.num6 <=1){
-                        v6.setBackgroundColor(Color.parseColor("#00FF34"));
-                    }else if (Main.num6 > 1 && Main.num6 <= 2){
-                        v6.setBackgroundColor(Color.parseColor("#98ed1f"));
-                    }else if (Main.num6 > 2 && Main.num6 <= 3){
-                        v6.setBackgroundColor(Color.parseColor("#ffff01"));
-                    }else if (Main.num6 > 3 && Main.num6 <= 4){
-                        v6.setBackgroundColor(Color.parseColor("#ff0103"));
-                    }else if (Main.num6 > 4 && Main.num6 <= 5){
-                        v6.setBackgroundColor(Color.parseColor("#4c060e"));
-                    }
+                    dlztScope(v6, Main.num1, 1, 2, 3, 4, 5);
                     textv1 = findViewById(R.id.tv6);
-                    textv1.setText(String.valueOf(Main.num6));
+                    textv1.setText(String.valueOf(Main.num1));
                     break;
             }
-
-//            if(msg.what == 1){
-//                v1 = findViewById(R.id.view1);
-//                if (Main.num1 >= 29){
-//                    v1.setBackgroundColor(Color.parseColor("#FF0103"));
-//                }else if (Main.num1 > 26 && Main.num1 < 29){
-//                    v1.setBackgroundColor(Color.parseColor("#FFF000"));
-//                }else if (Main.num1 <= 26 ){
-//                    v1.setBackgroundColor(Color.parseColor("#00FF34"));
-//                }
-//                textv1 = findViewById(R.id.tv1);
-//                textv1.setText(String.valueOf(Main.num1));
-//            }else if (msg.what == 2){
-//                v2 = findViewById(R.id.view2);
-//                if (Main.num2 >= 69){
-//                    v2.setBackgroundColor(Color.parseColor("#FF0103"));
-//                }else if (Main.num2 > 66 && Main.num2 < 69){
-//                    v2.setBackgroundColor(Color.parseColor("#FFF000"));
-//                }else if (Main.num2 <= 64 ){
-//                    v2.setBackgroundColor(Color.parseColor("#00FF34"));
-//                }
-//                textv1 = findViewById(R.id.tv2);
-//                textv1.setText(String.valueOf(Main.num2));
-//            }else if (msg.what == 3){
-//                v3 = findViewById(R.id.view3);
-//                if (Main.num3 >= 3000){
-//                    v3.setBackgroundColor(Color.parseColor("#FF0103"));
-//                }else if (Main.num3 > 1000 && Main.num3 < 2000){
-//                    v3.setBackgroundColor(Color.parseColor("#FFF000"));
-//                }else if (Main.num3 <= 1000){
-//                    v3.setBackgroundColor(Color.parseColor("#00FF34"));
-//                }
-//                textv1 = findViewById(R.id.tv3);
-//                textv1.setText(String.valueOf(Main.num3));
-//            }else if (msg.what == 4){
-//                v4 = findViewById(R.id.view4);
-//                if (Main.num4 >= 6000){
-//                    v4.setBackgroundColor(Color.parseColor("#FF0103"));
-//                }else if (Main.num4 > 3000 && Main.num4 < 6000){
-//                    v4.setBackgroundColor(Color.parseColor("#FFF000"));
-//                }else if (Main.num4 <= 3000 ){
-//                    v4.setBackgroundColor(Color.parseColor("#00FF34"));
-//                }
-//                textv1 = findViewById(R.id.tv4);
-//                textv1.setText(String.valueOf(Main.num4));
-//            }else if (msg.what == 5){
-//                v5 = findViewById(R.id.view5);
-//                if (Main.num5 >= 100){
-//                    v5.setBackgroundColor(Color.parseColor("#FF0103"));
-//                }else if (Main.num5 > 30 && Main.num5 < 100){
-//                    v5.setBackgroundColor(Color.parseColor("#FFF000"));
-//                }else if (Main.num5 <= 30 ){
-//                    v5.setBackgroundColor(Color.parseColor("#00FF34"));
-//                }
-//                textv1 = findViewById(R.id.tv5);
-//                textv1.setText(String.valueOf(Main.num5));
-//            }else if (msg.what == 6){
-//                v6 = findViewById(R.id.view6);
-//                if (Main.num6 >0 && Main.num6 <=1){
-//                    v6.setBackgroundColor(Color.parseColor("#00FF34"));
-//                }else if (Main.num6 > 1 && Main.num6 <= 2){
-//                    v6.setBackgroundColor(Color.parseColor("#98ed1f"));
-//                }else if (Main.num6 > 2 && Main.num6 <= 3){
-//                    v6.setBackgroundColor(Color.parseColor("#ffff01"));
-//                }else if (Main.num6 > 3 && Main.num6 <= 4){
-//                    v6.setBackgroundColor(Color.parseColor("#ff0103"));
-//                }else if (Main.num6 > 4 && Main.num6 <= 5){
-//                    v6.setBackgroundColor(Color.parseColor("#4c060e"));
-//                }
-//                textv1 = findViewById(R.id.tv6);
-//                textv1.setText(String.valueOf(Main.num6));
-//            }
-
             super.handleMessage(msg);
         }
     };
+
+    /**
+     * 判断数值的范围
+     *
+     * @param v      判断的 RelativeLayout（）
+     * @param num    判断的数值
+     * @param maxNum 最大
+     * @param minNum 最小
+     */
+    private void scopeNum(RelativeLayout v, Integer num, Integer maxNum, Integer minNum) {
+        // 爆表
+        if (num >= maxNum) {
+            v.setBackgroundColor(Color.parseColor("#FF0103"));
+            return;
+        }
+        // 最低
+        if (num <= minNum) {
+            v.setBackgroundColor(Color.parseColor("#00FF34"));
+            return;
+        }
+        // 之间
+        v.setBackgroundColor(Color.parseColor("#FFF000"));
+    }
+
+    /**
+     * 道路状态的比较
+     *
+     * @param v
+     * @param num
+     * @param maxNum
+     * @param minNum
+     */
+    private void dlztScope(RelativeLayout v, Integer num, Integer num1, Integer num2, Integer num3, Integer num4, Integer num5) {
+        if (num > num5) {
+            return;
+        }
+        if (num > num4) {
+            v6.setBackgroundColor(Color.parseColor("#4c060e"));
+            return;
+        }
+        if (num > num3) {
+            v6.setBackgroundColor(Color.parseColor("#ff0103"));
+            return;
+        }
+        if (num > num2) {
+            v6.setBackgroundColor(Color.parseColor("#ffff01"));
+            return;
+        }
+        if (num > num1) {
+            v6.setBackgroundColor(Color.parseColor("#98ed1f"));
+            return;
+        }
+        // 0 - 1 之间
+        v6.setBackgroundColor(Color.parseColor("#00FF34"));
+    }
 
 
 }

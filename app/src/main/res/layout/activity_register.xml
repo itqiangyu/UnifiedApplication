@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login"
     android:orientation="vertical">
-    <include layout="@layout/activity_main"></include><!--引入标题栏-->
+    <include layout="@layout/activity_main" /><!--引入标题栏-->
 
     <!--三个编辑框-->
     <!--android:background="@drawable/ic_launcher_background"
@@ -74,7 +74,7 @@
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:drawablePadding="10dp"
-        android:hint="请输入手机号"
+        android:hint="请输入手机号，可用作找回密码噢！"
         android:inputType="phone"
         android:paddingLeft="8dp"
         android:singleLine="true"

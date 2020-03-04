@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     /**
-     * 创建 登录接口 的实例
+     * 代理模式：创建 登录接口 的实例
      */
     private ILogin request = retrofit.create(ILogin.class);
 
@@ -89,6 +89,9 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //跳转到找回密码界面（此页面暂未创建）
+                //为了跳转到找回密码界面
+                Intent intent = new Intent(Login.this, Retrieve.class);
+                startActivityForResult(intent, 1);
             }
         });
         //登录按钮的点击事件
@@ -102,10 +105,12 @@ public class Login extends AppCompatActivity {
                 // TextUtils.isEmpty
                 if (TextUtils.isEmpty(userName)) {
                     Toast.makeText(Login.this, "请输入用户名", Toast.LENGTH_SHORT).show();
+                    et_user_name.setError("用户账号不能为空！");
                     return;
                 }
                 if (TextUtils.isEmpty(password)) {
                     Toast.makeText(Login.this, "请输入密码", Toast.LENGTH_SHORT).show();
+                    et_psw.setError("密码不能为空！");
                     return;
                 }
                 Call<Result> resultCall = request.login(userName, password);

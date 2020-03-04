@@ -28,8 +28,8 @@ import java.util.TimerTask;
  */
 public class LKCXActivity extends AppCompatActivity {
 
-    private TextView ttv1,ttv2,ttv3,ttv4,ttv5,ttv6;
-    private Timer time,time2,time3;
+    private TextView ttv1, ttv2, ttv3, ttv4, ttv5, ttv6;
+    private Timer time, time2, time3;
     private View v1;
 
 
@@ -48,8 +48,8 @@ public class LKCXActivity extends AppCompatActivity {
 
     }
 
-    public  void  menu_btn(View view){
-        PopupMenu menubtn = new PopupMenu(this,view);
+    public void menu_btn(View view) {
+        PopupMenu menubtn = new PopupMenu(this, view);
         // 这里的view代表popupMenu需要依附的view
         // 获取布局文件
         MenuInflater inflater = menubtn.getMenuInflater();
@@ -76,87 +76,87 @@ public class LKCXActivity extends AppCompatActivity {
             }
         });
 
-        inflater.inflate(R.menu.lkcx_menu,menubtn.getMenu());/** 加载menu文件 **/
+        inflater.inflate(R.menu.lkcx_menu, menubtn.getMenu());/** 加载menu文件 **/
         menubtn.show();// 显示控件
     }
 
-    public void PM(){/**PM2.5**/
-        time=new Timer();
+    public void PM() {/**PM2.5**/
+        time = new Timer();
         time.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(1);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
-    public void WD(){/**温度**/
-        time2=new Timer();
+    public void WD() {/**温度**/
+        time2 = new Timer();
         time2.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(2);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
-    public void SD(){/**湿度**/
-        time3=new Timer();
+    public void SD() {/**湿度**/
+        time3 = new Timer();
         time3.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(3);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
     /**
      * 一号道路
      */
-    public void dl1(){/**道路状态：显示一号道路**/
-        time=new Timer();
+    public void dl1() {/**道路状态：显示一号道路**/
+        time = new Timer();
         time.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(4);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
     /**
      * 二号道路
      */
-    public void dl2(){/**道路状态：显示二号道路**/
-        time=new Timer();
+    public void dl2() {/**道路状态：显示二号道路**/
+        time = new Timer();
         time.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(5);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
     /**
      * 三号道路
      */
-    public void dl3(){/**道路状态：显示三号道路**/
-        time=new Timer();
+    public void dl3() {/**道路状态：显示三号道路**/
+        time = new Timer();
         time.schedule(new TimerTask() {
             @Override
             public void run() {
 
                 handler.sendEmptyMessage(6);
             }
-        },0,3000);
+        }, 0, 3000);
     }
 
     @SuppressLint("HandlerLeak")
-    Handler handler = new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
             ttv4 = findViewById(R.id.tab1);
@@ -165,77 +165,69 @@ public class LKCXActivity extends AppCompatActivity {
             switch (msg.what) {
                 case 1:
                     ttv1 = findViewById(R.id.textView5);
-                    ttv1.setText(String.valueOf(Main.num5));
+                    ttv1.setText(String.valueOf(Main.pm));
                     break;
                 case 2:
                     ttv2 = findViewById(R.id.textView6);
-                    ttv2.setText(String.valueOf(Main.num1));
+                    ttv2.setText(String.valueOf(Main.wendu));
                     break;
                 case 3:
                     ttv3 = findViewById(R.id.textView7);
-                    ttv3.setText(String.valueOf(Main.num2));
+                    ttv3.setText(String.valueOf(Main.shidu));
                     break;
                 case 4:
                     v1 = findViewById(R.id.vv1);
-                    if (Main.num6 >0 && Main.num6 <=1){
-                        v1.setBackgroundColor(Color.parseColor("#00FF34"));
-                        ttv4.setText("1号道路:通畅");
-                    }else if (Main.num6 > 1 && Main.num6 <= 2){
-                        v1.setBackgroundColor(Color.parseColor("#98ed1f"));
-                        ttv4.setText("1号道路:较通畅");
-                    }else if (Main.num6 > 2 && Main.num6 <= 3){
-                        v1.setBackgroundColor(Color.parseColor("#ffff01"));
-                        ttv4.setText("1号道路:拥挤");
-                    }else if (Main.num6 > 3 && Main.num6 <= 4){
-                        v1.setBackgroundColor(Color.parseColor("#ff0103"));
-                        ttv4.setText("1号道路:堵塞");
-                    }else if (Main.num6 > 4 && Main.num6 <= 5){
-                        v1.setBackgroundColor(Color.parseColor("#4c060e"));
-                        ttv4.setText("1号道路:爆表");
-                    }
+                    scopeNum(v1, ttv4, Main.num1, 1, 2, 3, 4, 5);
                     break;
                 case 5:
                     v1 = findViewById(R.id.vv2);
-                    if (Main.num7 >0 && Main.num7 <=1){
-                        v1.setBackgroundColor(Color.parseColor("#00FF34"));
-                        ttv5.setText("2号道路:通畅");
-                    }else if (Main.num7 > 1 && Main.num7 <= 2){
-                        v1.setBackgroundColor(Color.parseColor("#98ed1f"));
-                        ttv5.setText("2号道路:较通畅");
-                    }else if (Main.num7 > 2 && Main.num7 <= 3){
-                        v1.setBackgroundColor(Color.parseColor("#ffff01"));
-                        ttv5.setText("2号道路:拥挤");
-                    }else if (Main.num7 > 3 && Main.num7 <= 4){
-                        v1.setBackgroundColor(Color.parseColor("#ff0103"));
-                        ttv5.setText("2号道路:堵塞");
-                    }else if (Main.num7 > 4 && Main.num7 <= 5){
-                        v1.setBackgroundColor(Color.parseColor("#4c060e"));
-                        ttv5.setText("2号道路:爆表");
-                    }
+                    scopeNum(v1, ttv5, Main.num2, 1, 2, 3, 4, 5);
                     break;
                 case 6:
                     v1 = findViewById(R.id.vv3);
-                    if (Main.num8 >0 && Main.num8 <=1){
-                        v1.setBackgroundColor(Color.parseColor("#00FF34"));
-                        ttv6.setText("3号道路:通畅");
-                    }else if (Main.num8 > 1 && Main.num8 <= 2){
-                        v1.setBackgroundColor(Color.parseColor("#98ed1f"));
-                        ttv6.setText("3号道路:较通畅");
-                    }else if (Main.num8 > 2 && Main.num8 <= 3){
-                        v1.setBackgroundColor(Color.parseColor("#ffff01"));
-                        ttv6.setText("3号道路:拥挤");
-                    }else if (Main.num8 > 3 && Main.num8 <= 4){
-                        v1.setBackgroundColor(Color.parseColor("#ff0103"));
-                        ttv6.setText("3号道路:堵塞");
-                    }else if (Main.num8 > 4 && Main.num8 <= 5){
-                        v1.setBackgroundColor(Color.parseColor("#4c060e"));
-                        ttv6.setText("3号道路:爆表");
-                    }
+                    scopeNum(v1, ttv6, Main.num3, 1, 2, 3, 4, 5);
                     break;
             }
 
             super.handleMessage(msg);
         }
     };
+
+    /**
+     * 判断数值的范围
+     *
+     * @param v      判断的 RelativeLayout（）
+     * @param num    判断的数值
+     * @param maxNum 最大
+     * @param minNum 最小
+     */
+    private void scopeNum(View v, TextView t, Integer num, Integer num1, Integer num2, Integer num3, Integer num4, Integer num5) {
+        if (num > num5) {
+            return;
+        }
+        if (num > num4) {
+            v.setBackgroundColor(Color.parseColor("#4c060e"));
+            t.setText("2号道路:爆表");
+            return;
+        }
+        if (num > num3) {
+            v.setBackgroundColor(Color.parseColor("#ff0103"));
+            t.setText("2号道路:堵塞");
+            return;
+        }
+        if (num > num2) {
+            v.setBackgroundColor(Color.parseColor("#ffff01"));
+            t.setText("2号道路:拥挤");
+            return;
+        }
+        if (num > num1) {
+            v.setBackgroundColor(Color.parseColor("#98ed1f"));
+            t.setText("2号道路:较通畅");
+            return;
+        }
+        // 0 - 1 之间
+        v.setBackgroundColor(Color.parseColor("#00FF34"));
+        t.setText("2号道路:通畅");
+    }
 
 }

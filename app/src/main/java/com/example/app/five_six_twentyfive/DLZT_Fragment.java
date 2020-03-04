@@ -55,7 +55,7 @@ public class DLZT_Fragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            list.add(Main.num6);
+                            list.add(Main.num1);
                             dynamicLineChart.addEntry(list);
                             list.clear();
                         }

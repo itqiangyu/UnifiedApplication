@@ -55,7 +55,7 @@ public class GzFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            list.add(Main.num3);
+                            list.add(Main.guangzhao);
                             dynamicLineChart.addEntry(list);
                             list.clear();
                         }

@@ -55,7 +55,7 @@ public class PmFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            list.add(Main.num5);
+                            list.add(Main.pm);
                             dynamicLineChart.addEntry(list);
                             list.clear();
                         }

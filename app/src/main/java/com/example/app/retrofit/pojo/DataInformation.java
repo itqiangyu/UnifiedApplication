@@ -28,76 +28,76 @@ package com.example.app.retrofit.pojo;
  * @date 2020/3/2 17:10
  */
 public class DataInformation {
-    private Integer wendu; // 温度
-    private Integer shidu; // 湿度
-    private Integer guangzhao; // 光照
-    private Integer co; // 二氧化碳
-    private Integer pm; // PM2.5
-    private Integer num1; // 道路一
-    private Integer num2; // 道路二
-    private Integer num3; // 道路三
+    private int wendu; // 温度
+    private int shidu; // 湿度
+    private int guangzhao; // 光照
+    private int co; // 二氧化碳
+    private int pm; // PM2.5
+    private int num1; // 道路一
+    private int num2; // 道路二
+    private int num3; // 道路三
 
-    public Integer getWendu() {
+    public int getWendu() {
         return wendu;
     }
 
-    public void setWendu(Integer wendu) {
+    public void setWendu(int wendu) {
         this.wendu = wendu;
     }
 
-    public Integer getShidu() {
+    public int getShidu() {
         return shidu;
     }
 
-    public void setShidu(Integer shidu) {
+    public void setShidu(int shidu) {
         this.shidu = shidu;
     }
 
-    public Integer getGuangzhao() {
+    public int getGuangzhao() {
         return guangzhao;
     }
 
-    public void setGuangzhao(Integer guangzhao) {
+    public void setGuangzhao(int guangzhao) {
         this.guangzhao = guangzhao;
     }
 
-    public Integer getCo() {
+    public int getCo() {
         return co;
     }
 
-    public void setCo(Integer co) {
+    public void setCo(int co) {
         this.co = co;
     }
 
-    public Integer getPm() {
+    public int getPm() {
         return pm;
     }
 
-    public void setPm(Integer pm) {
+    public void setPm(int pm) {
         this.pm = pm;
     }
 
-    public Integer getNum1() {
+    public int getNum1() {
         return num1;
     }
 
-    public void setNum1(Integer num1) {
+    public void setNum1(int num1) {
         this.num1 = num1;
     }
 
-    public Integer getNum2() {
+    public int getNum2() {
         return num2;
     }
 
-    public void setNum2(Integer num2) {
+    public void setNum2(int num2) {
         this.num2 = num2;
     }
 
-    public Integer getNum3() {
+    public int getNum3() {
         return num3;
     }
 
-    public void setNum3(Integer num3) {
+    public void setNum3(int num3) {
         this.num3 = num3;
     }
 }

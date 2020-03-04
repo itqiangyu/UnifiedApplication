@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.app">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <!--android:usesCleartextTraffic="true"：设置为可以使用加密连接，默认使用加密连接-->
 
     <application
         android:allowBackup="true"
@@ -12,50 +12,57 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <!--android:theme="@style/AppTheme"：已修改，去掉顶部标题栏以及状态栏-->
+        <!-- android:theme="@style/AppTheme"：已修改，去掉顶部标题栏以及状态栏 -->
 
-        <!--注册-->
-        <activity android:name=".login_register.Register"
-            android:screenOrientation="landscape">
-        </activity>
-        <!--登录-->
-        <activity android:name=".login_register.Login"
+        <activity
+            android:name=".login_register.Retrieve"
+            android:screenOrientation="landscape" /> <!--找回密码-->
+        <!-- 注册 -->
+        <activity
+            android:name=".login_register.Register"
+            android:screenOrientation="landscape" /> <!-- 登录 -->
+        <activity
+            android:name=".login_register.Login"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <!--顶部状态栏-->
-        <activity android:name=".login_register.MainActivity"
-            android:screenOrientation="landscape" />
 
-        <!--第五题：环境指标-->
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <!-- 不知道是啥，可以消除黄色 -->
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity> <!-- 顶部状态栏 -->
+        <activity
+            android:name=".login_register.MainActivity"
+            android:screenOrientation="landscape" />
+        <!-- 第五题：环境指标 -->
         <activity
             android:name=".five_six_twentyfive.five.HJZBActivity"
             android:screenOrientation="landscape" />
-
-        <!--第六题：实时显示-->
+        <!-- 第六题：实时显示 -->
         <activity
             android:name=".five_six_twentyfive.six.SSXSActivity"
             android:screenOrientation="landscape" />
-
-        <!--第25题：路况查询-->
+        <!-- 第25题：路况查询 -->
         <activity
             android:name=".five_six_twentyfive.twentyfive.LKCXActivity"
             android:screenOrientation="landscape" />
-
-        <!--二氧化碳、道路状态、光照、PM2.5、湿度、温度-->
+        <!-- 二氧化碳、道路状态、光照、PM2.5、湿度、温度 -->
         <activity android:name=".five_six_twentyfive.CoFragment" />
         <activity android:name=".five_six_twentyfive.DLZT_Fragment" />
         <activity android:name=".five_six_twentyfive.GzFragment" />
         <activity android:name=".five_six_twentyfive.PmFragment" />
         <activity android:name=".five_six_twentyfive.SdFragment" />
         <activity android:name=".five_six_twentyfive.WdFragment" />
-        <!--登录进去的主界面-->
+
+        <!-- 登录进去的主界面 -->
         <activity
             android:name=".five_six_twentyfive.Main"
             android:screenOrientation="landscape" />
     </application>
+
+    <!-- 联网权限 -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

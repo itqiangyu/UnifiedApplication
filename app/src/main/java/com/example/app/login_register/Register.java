@@ -44,7 +44,7 @@ public class Register extends AppCompatActivity {
             .build();
 
     /**
-     * 创建 注册接口 的实例
+     * 代理模式：创建 注册接口 的实例
      */
     private IRegister request = retrofit.create(IRegister.class);
 
