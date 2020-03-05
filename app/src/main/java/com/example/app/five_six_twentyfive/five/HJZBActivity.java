@@ -78,7 +78,6 @@ public class HJZBActivity extends AppCompatActivity {
                     HJZBActivity.this.startActivity(intent);
                     finish();
                 }
-
                 return true;
             }
         });

@@ -18,7 +18,8 @@
         android:id="@+id/ssxs">
     </item>
     <item
-        android:id="@+id/ewm"
-        android:title="二维码支付"></item>
+        android:title="二维码支付"
+        android:id="@+id/ewm">
+    </item>
 
 </menu>

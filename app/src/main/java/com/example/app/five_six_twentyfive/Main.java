@@ -63,11 +63,8 @@ public class Main extends AppCompatActivity {
             /** 通过setOnMenuItemClickListener接口调用已有的menu布局 **/
             @Override
             public boolean onMenuItemClick(MenuItem item) {/** 控制item的点击事件 **/
-                if (item.getItemId() == R.id.ewm) {
-                    Intent intent = new Intent(Main.this, ewm_activity.class);// 该页面跳转环境指标页面
-                    Main.this.startActivity(intent);
-                    finish();
-                } else if (item.getItemId() == R.id.hjzb) {
+
+                if (item.getItemId() == R.id.hjzb) {
                     Intent intent = new Intent(Main.this, HJZBActivity.class);// 该页面跳转环境指标页面
                     Main.this.startActivity(intent);
                     finish();
@@ -79,8 +76,11 @@ public class Main extends AppCompatActivity {
                     Intent intent1 = new Intent(Main.this, LKCXActivity.class);// 该页面跳转路口查询页面
                     Main.this.startActivity(intent1);
                     finish();
+                }else if (item.getItemId() == R.id.ewm) {
+                    Intent intent1 = new Intent(Main.this, ewm_activity.class);// 该页面跳转路口查询页面
+                    Main.this.startActivity(intent1);
+                    finish();
                 }
-
                 return true;
             }
         });
