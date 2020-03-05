@@ -46,7 +46,6 @@ public class ewm_activity extends AppCompatActivity {
     private RelativeLayout c;
     private ConstraintLayout quanping;
 
-
     private TextView bianhao;
     private TextView jine;
     private Button button;

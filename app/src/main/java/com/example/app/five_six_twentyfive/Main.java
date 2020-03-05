@@ -95,44 +95,50 @@ public class Main extends AppCompatActivity {
             @Override
             public void run() {
 
-                Call<DataInformation> resultCall = request.receiveData();
-                resultCall.enqueue(new Callback<DataInformation>() {
-                    /**
-                     * 请求成功回调函数
-                     * @param call
-                     * @param response
-                     */
-                    @Override
-                    public void onResponse(Call<DataInformation> call, Response<DataInformation> response) {
-                        DataInformation body = response.body();
+                try {
+                    Call<DataInformation> resultCall = request.receiveData();
+                    resultCall.enqueue(new Callback<DataInformation>() {
+                        /**
+                         * 请求成功回调函数
+                         *
+                         * @param call
+                         * @param response
+                         */
+                        @Override
+                        public void onResponse(Call<DataInformation> call, Response<DataInformation> response) {
+                            DataInformation body = response.body();
 
-                        if (body == null) {
-                            Toast.makeText(Main.this, "请求异常，加载数据失败。", Toast.LENGTH_LONG).show();
-                            return;
+                            if (body == null) {
+                                Toast.makeText(Main.this, "请求异常，加载数据失败。", Toast.LENGTH_LONG).show();
+                                return;
+                            }
+
+    //                        Toast.makeText(Main.this, "加载数据成功，请稍等。", Toast.LENGTH_SHORT).show();
+                            // 从服务器获取数据并设置到本地
+                            wendu = body.getWendu();
+                            shidu = body.getShidu();
+                            guangzhao = body.getGuangzhao();
+                            co = body.getCo();
+                            pm = body.getPm();
+                            num1 = body.getNum1();
+                            num2 = body.getNum2();
+                            num3 = body.getNum3();
                         }
 
-//                        Toast.makeText(Main.this, "加载数据成功，请稍等。", Toast.LENGTH_SHORT).show();
-                        // 从服务器获取数据并设置到本地
-                        wendu = body.getWendu();
-                        shidu = body.getShidu();
-                        guangzhao = body.getGuangzhao();
-                        co = body.getCo();
-                        pm = body.getPm();
-                        num1 = body.getNum1();
-                        num2 = body.getNum2();
-                        num3 = body.getNum3();
-                    }
-
-                    /**
-                     * 请求失败的回调函数
-                     * @param call
-                     * @param throwable
-                     */
-                    @Override
-                    public void onFailure(Call<DataInformation> call, Throwable t) {
-                        Toast.makeText(Main.this, "网络错误，加载数据失败。", Toast.LENGTH_LONG).show();
-                    }
-                });
+                        /**
+                         * 请求失败的回调函数
+                         *
+                         * @param call
+                         * @param throwable
+                         */
+                        @Override
+                        public void onFailure(Call<DataInformation> call, Throwable t) {
+                            Toast.makeText(Main.this, "网络错误，加载数据失败。", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }, 0, 3000);
     }

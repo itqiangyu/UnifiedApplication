@@ -116,50 +116,54 @@ public class Register extends AppCompatActivity {
                     return;
                 }
 
-                Call<Result> resultCall = request.register(user.getUserName(), user.getPassword(), user.getPhone());
-                resultCall.enqueue(new Callback<Result>() {
-                    /**
-                     * 请求成功回调函数
-                     * @param call
-                     * @param response
-                     */
-                    @Override
-                    public void onResponse(Call<Result> call, Response<Result> response) {
-                        Result body = response.body();
+                try {
+                    Call<Result> resultCall = request.register(user.getUserName(), user.getPassword(), user.getPhone());
+                    resultCall.enqueue(new Callback<Result>() {
+                        /**
+                         * 请求成功回调函数
+                         * @param call
+                         * @param response
+                         */
+                        @Override
+                        public void onResponse(Call<Result> call, Response<Result> response) {
+                            Result body = response.body();
 
-                        if (body == null) {
-                            Toast.makeText(Register.this, "注册异常，请重试。", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
+                            if (body == null) {
+                                Toast.makeText(Register.this, "注册异常，请重试。", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
 
-                        if (body.getStatus() != 200) {
+                            if (body.getStatus() != 200) {
+                                Toast.makeText(Register.this, body.getMsg(), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            // 注册成功
                             Toast.makeText(Register.this, body.getMsg(), Toast.LENGTH_SHORT).show();
-                            return;
+
+                            //注册成功后把账号传递到LoginActivity.java中
+                            // 返回值到loginActivity显示
+                            Intent data = new Intent();
+                            data.putExtra("userName", user.getUserName());
+                            setResult(RESULT_OK, data);
+                            //RESULT_OK为Activity系统常量，状态码为-1，
+                            // 表示此页面下的内容操作成功将data返回到上一页面，如果是用back返回过去的则不存在用setResult传递data值
+                            Register.this.finish();
                         }
 
-                        // 注册成功
-                        Toast.makeText(Register.this, body.getMsg(), Toast.LENGTH_SHORT).show();
-
-                        //注册成功后把账号传递到LoginActivity.java中
-                        // 返回值到loginActivity显示
-                        Intent data = new Intent();
-                        data.putExtra("userName", user.getUserName());
-                        setResult(RESULT_OK, data);
-                        //RESULT_OK为Activity系统常量，状态码为-1，
-                        // 表示此页面下的内容操作成功将data返回到上一页面，如果是用back返回过去的则不存在用setResult传递data值
-                        Register.this.finish();
-                    }
-
-                    /**
-                     * 请求失败的回调函数
-                     * @param call
-                     * @param throwable
-                     */
-                    @Override
-                    public void onFailure(Call<Result> call, Throwable t) {
-                        Toast.makeText(Register.this, "网络错误，请检查网络。", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        /**
+                         * 请求失败的回调函数
+                         * @param call
+                         * @param throwable
+                         */
+                        @Override
+                        public void onFailure(Call<Result> call, Throwable t) {
+                            Toast.makeText(Register.this, "网络错误，请检查网络。", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

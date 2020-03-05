@@ -114,60 +114,64 @@ public class Login extends AppCompatActivity {
                     return;
                 }
                 // 发送请求
-                Call<Result> resultCall = request.login(userName, password);
-                resultCall.enqueue(new Callback<Result>() {
-                    /**
-                     * 请求成功回调函数
-                     * @param call
-                     * @param response
-                     */
-                    @Override
-                    public void onResponse(Call<Result> call, Response<Result> response) {
-                        Result body = response.body();
-//                        System.out.println(response.headers());
-//                        System.out.println(response.toString());
-//                        System.out.println(body);
-                        if (body == null) {
-                            Toast.makeText(Login.this, "登录异常，请重试。", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        System.out.println(body.getStatus());
+                try {
+                    Call<Result> resultCall = request.login(userName, password);
+                    resultCall.enqueue(new Callback<Result>() {
+                        /**
+                         * 请求成功回调函数
+                         * @param call
+                         * @param response
+                         */
+                        @Override
+                        public void onResponse(Call<Result> call, Response<Result> response) {
+                            Result body = response.body();
+    //                        System.out.println(response.headers());
+    //                        System.out.println(response.toString());
+    //                        System.out.println(body);
+                            if (body == null) {
+                                Toast.makeText(Login.this, "登录异常，请重试。", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            System.out.println(body.getStatus());
 
-                        if (body.getStatus() != 200) {
-                            // 登录失败
+                            if (body.getStatus() != 200) {
+                                // 登录失败
+                                Toast.makeText(Login.this, body.getMsg(), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            // 否则登录成功
                             Toast.makeText(Login.this, body.getMsg(), Toast.LENGTH_SHORT).show();
-                            return;
+
+                            // 保存登录状态，在界面保存登录的用户名 定义个方法 saveLoginStatus boolean 状态 , userName 用户名;
+                            saveLoginStatus(true, userName);
+                            //登录成功后关闭此页面进入主页
+                            Intent data = new Intent();
+                            //datad.putExtra( ); name , value ;
+                            data.putExtra("isLogin", true);
+                            //RESULT_OK为Activity系统常量，状态码为-1
+                            // 表示此页面下的内容操作成功将data返回到上一页面，如果是用back返回过去的则不存在用setResult传递data值
+                            setResult(RESULT_OK, data);
+                            //销毁登录界面
+                            Login.this.finish();
+                            //跳转到主界面，登录成功的状态传递到 MainActivity 中
+                            startActivity(new Intent(Login.this, Main.class));
                         }
 
-                        // 否则登录成功
-                        Toast.makeText(Login.this, body.getMsg(), Toast.LENGTH_SHORT).show();
-
-                        // 保存登录状态，在界面保存登录的用户名 定义个方法 saveLoginStatus boolean 状态 , userName 用户名;
-                        saveLoginStatus(true, userName);
-                        //登录成功后关闭此页面进入主页
-                        Intent data = new Intent();
-                        //datad.putExtra( ); name , value ;
-                        data.putExtra("isLogin", true);
-                        //RESULT_OK为Activity系统常量，状态码为-1
-                        // 表示此页面下的内容操作成功将data返回到上一页面，如果是用back返回过去的则不存在用setResult传递data值
-                        setResult(RESULT_OK, data);
-                        //销毁登录界面
-                        Login.this.finish();
-                        //跳转到主界面，登录成功的状态传递到 MainActivity 中
-                        startActivity(new Intent(Login.this, Main.class));
-                    }
-
-                    /**
-                     * 请求失败的回调函数
-                     * @param call
-                     * @param throwable
-                     */
-                    @Override
-                    public void onFailure(Call<Result> call, Throwable t) {
-                        Toast.makeText(Login.this, "网络错误，请检查网络。", Toast.LENGTH_SHORT).show();
-                        System.out.println("登录错误：" + t.getMessage());
-                    }
-                });
+                        /**
+                         * 请求失败的回调函数
+                         * @param call
+                         * @param throwable
+                         */
+                        @Override
+                        public void onFailure(Call<Result> call, Throwable t) {
+                            Toast.makeText(Login.this, "网络错误，请检查网络。", Toast.LENGTH_SHORT).show();
+                            System.out.println("登录错误：" + t.getMessage());
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

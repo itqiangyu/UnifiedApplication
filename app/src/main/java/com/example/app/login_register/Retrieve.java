@@ -119,45 +119,49 @@ public class Retrieve extends AppCompatActivity {
                     return;
                 }
 
-                Call<Result> resultCall = request.retrievePassword(phone, newPassword);
-                resultCall.enqueue(new Callback<Result>() {
-                    /**
-                     * 请求成功回调函数
-                     * @param call
-                     * @param response
-                     */
-                    @Override
-                    public void onResponse(Call<Result> call, Response<Result> response) {
-                        // 解析完服务器返回的json，转化为 pojo
-                        Result body = response.body();
-                        if (body == null) {
-                            Toast.makeText(Retrieve.this, "找回密码异常，请重试。", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        if (body.getStatus() != 200) {
-                            // 找回密码失败
+                try {
+                    Call<Result> resultCall = request.retrievePassword(phone, newPassword);
+                    resultCall.enqueue(new Callback<Result>() {
+                        /**
+                         * 请求成功回调函数
+                         * @param call
+                         * @param response
+                         */
+                        @Override
+                        public void onResponse(Call<Result> call, Response<Result> response) {
+                            // 解析完服务器返回的json，转化为 pojo
+                            Result body = response.body();
+                            if (body == null) {
+                                Toast.makeText(Retrieve.this, "找回密码异常，请重试。", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            if (body.getStatus() != 200) {
+                                // 找回密码失败
+                                Toast.makeText(Retrieve.this, body.getMsg(), Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            // 否则找回密码成功
                             Toast.makeText(Retrieve.this, body.getMsg(), Toast.LENGTH_SHORT).show();
-                            return;
+                            //销毁登录界面
+                            Retrieve.this.finish();
+                            //跳转到主界面，登录成功的状态传递到 MainActivity 中
+                            startActivity(new Intent(Retrieve.this, Login.class));
                         }
-                        // 否则找回密码成功
-                        Toast.makeText(Retrieve.this, body.getMsg(), Toast.LENGTH_SHORT).show();
-                        //销毁登录界面
-                        Retrieve.this.finish();
-                        //跳转到主界面，登录成功的状态传递到 MainActivity 中
-                        startActivity(new Intent(Retrieve.this, Login.class));
-                    }
 
-                    /**
-                     * 请求失败的回调函数
-                     * @param call
-                     * @param throwable
-                     */
-                    @Override
-                    public void onFailure(Call<Result> call, Throwable t) {
-                        Toast.makeText(Retrieve.this, "网络错误，请检查网络。", Toast.LENGTH_SHORT).show();
-                        System.out.println("找回密码错误：" + t.getMessage());
-                    }
-                });
+                        /**
+                         * 请求失败的回调函数
+                         * @param call
+                         * @param throwable
+                         */
+                        @Override
+                        public void onFailure(Call<Result> call, Throwable t) {
+                            Toast.makeText(Retrieve.this, "网络错误，请检查网络。", Toast.LENGTH_SHORT).show();
+                            System.out.println("找回密码错误：" + t.getMessage());
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
