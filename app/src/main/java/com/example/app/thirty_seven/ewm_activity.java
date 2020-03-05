@@ -169,25 +169,23 @@ public class ewm_activity extends AppCompatActivity {
             /** 通过setOnMenuItemClickListener接口调用已有的menu布局 **/
             @Override
             public boolean onMenuItemClick(MenuItem item) {/** 控制item的点击事件 **/
-                if (item.getItemId() == R.id.menu) {
-                    Intent intent = new Intent(ewm_activity.this, Main.class);// 页面跳转首页
+                Intent intent = null;
+                switch (item.getItemId()) {
+                    case R.id.menu:
+                        intent = new Intent(ewm_activity.this, Main.class);// 页面跳转首页
+                        break;
+                    case R.id.hjzb:
+                        intent = new Intent(ewm_activity.this, HJZBActivity.class);// 该页面跳转环境指标页面
+                        break;
+                    case R.id.ssxs:
+                        intent = new Intent(ewm_activity.this, SSXSActivity.class);// 该页面跳转实时显示页面
+                        break;
+                    case R.id.lkcx:
+                        intent = new Intent(ewm_activity.this, LKCXActivity.class);// 该页面跳转路况查询页面
+                        break;
+                }
+                if (intent != null) {
                     ewm_activity.this.startActivity(intent);
-                    finish();
-                } else if (item.getItemId() == R.id.hjzb) {
-                    Intent intent = new Intent(ewm_activity.this, HJZBActivity.class);// 该页面跳转环境指标页面
-                    ewm_activity.this.startActivity(intent);
-                    finish();
-                } else if (item.getItemId() == R.id.ssxs) {
-                    Intent intent = new Intent(ewm_activity.this, SSXSActivity.class);// 该页面跳转实时显示页面
-                    ewm_activity.this.startActivity(intent);
-                    finish();
-                } else if (item.getItemId() == R.id.lkcx) {
-                    Intent intent1 = new Intent(ewm_activity.this, LKCXActivity.class);// 该页面跳转路口查询页面
-                    ewm_activity.this.startActivity(intent1);
-                    finish();
-                } else if (item.getItemId() == R.id.ewm) {
-                    Intent intent1 = new Intent(ewm_activity.this, ewm_activity.class);// 该页面跳转路口查询页面
-                    ewm_activity.this.startActivity(intent1);
                     finish();
                 }
 

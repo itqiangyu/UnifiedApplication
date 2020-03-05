@@ -44,4 +44,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     /*解析json*/
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    /*二维码框架*/
+    implementation 'cn.yipianfengye.android:zxing-library:2.2'
 }

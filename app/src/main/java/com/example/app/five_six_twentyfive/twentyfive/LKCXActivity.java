@@ -60,23 +60,26 @@ public class LKCXActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {/** 控制item的点击事件 **/
 
-                if (item.getItemId() == R.id.menu) {
-                    Intent intent = new Intent(LKCXActivity.this, Main.class);// 页面跳转首页
+                Intent intent = null;
+                switch (item.getItemId()) {
+                    case R.id.menu:
+                        intent = new Intent(LKCXActivity.this, Main.class);// 页面跳转首页
+                        break;
+                    case R.id.hjzb:
+                        intent = new Intent(LKCXActivity.this, HJZBActivity.class);// 该页面跳转环境指标页面
+                        break;
+                    case R.id.ssxs:
+                        intent = new Intent(LKCXActivity.this, SSXSActivity.class);// 该页面跳转实时显示页面
+                        break;
+                    case R.id.ewm:
+                        intent = new Intent(LKCXActivity.this, ewm_activity.class);// 该页面跳转二维码支付页面
+                        break;
+                }
+                if (intent != null) {
                     LKCXActivity.this.startActivity(intent);
-                    finish();
-                } else if (item.getItemId() == R.id.hjzb) {
-                    Intent intent = new Intent(LKCXActivity.this, HJZBActivity.class);// 该页面跳转环境指标页面
-                    LKCXActivity.this.startActivity(intent);
-                    finish();
-                } else if (item.getItemId() == R.id.ssxs) {
-                    Intent intent = new Intent(LKCXActivity.this, SSXSActivity.class);// 该页面跳转实时显示页面
-                    LKCXActivity.this.startActivity(intent);
-                    finish();
-                }else if (item.getItemId() == R.id.ewm) {
-                    Intent intent1 = new Intent(LKCXActivity.this, ewm_activity.class);// 该页面跳转路口查询页面
-                    LKCXActivity.this.startActivity(intent1);
                     finish();
                 }
+
                 return true;
             }
         });

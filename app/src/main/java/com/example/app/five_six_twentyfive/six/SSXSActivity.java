@@ -232,23 +232,26 @@ public class SSXSActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public boolean onMenuItemClick(MenuItem item) {/** 控制item的点击事件 **/
 
-                if (item.getItemId() == R.id.menu) {
-                    Intent intent = new Intent(SSXSActivity.this, Main.class);// 该页面跳转首页
-                    SSXSActivity.this.startActivity(intent);
-                    //finish();
-                } else if (item.getItemId() == R.id.hjzb) {
-                    Intent intent = new Intent(SSXSActivity.this, HJZBActivity.class);// 该页面跳转环境指标页面
-                    SSXSActivity.this.startActivity(intent);
-                    //finish();
-                }  else if (item.getItemId() == R.id.lkcx) {
-                    Intent intent = new Intent(SSXSActivity.this, LKCXActivity.class);// 该页面跳转路况查询页面
-                    SSXSActivity.this.startActivity(intent);
-                    //finish();
-                }else if (item.getItemId() == R.id.ewm) {
-                    Intent intent1 = new Intent(SSXSActivity.this, ewm_activity.class);// 该页面跳转路口查询页面
-                    SSXSActivity.this.startActivity(intent1);
-                    //finish();
+                Intent intent = null;
+                switch (item.getItemId()) {
+                    case R.id.menu:
+                        intent = new Intent(SSXSActivity.this, Main.class);// 页面跳转首页
+                        break;
+                    case R.id.hjzb:
+                        intent = new Intent(SSXSActivity.this, HJZBActivity.class);// 该页面跳转环境指标页面
+                        break;
+                    case R.id.lkcx:
+                        intent = new Intent(SSXSActivity.this, LKCXActivity.class);// 该页面跳转路况查询页面
+                        break;
+                    case R.id.ewm:
+                        intent = new Intent(SSXSActivity.this, ewm_activity.class);// 该页面跳转二维码支付页面
+                        break;
                 }
+                if (intent != null) {
+                    SSXSActivity.this.startActivity(intent);
+                    finish();
+                }
+
                 return true;
             }
         });

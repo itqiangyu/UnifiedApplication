@@ -46,20 +46,24 @@ public class GzFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            list.add(Main.guangzhao);
-                            dynamicLineChart.addEntry(list);
-                            list.clear();
+                try {
+                    while (true) {
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    });
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                list.add(Main.guangzhao);
+                                dynamicLineChart.addEntry(list);
+                                list.clear();
+                            }
+                        });
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }).start();
@@ -119,7 +123,7 @@ public class GzFragment extends Fragment {
         //初始化折线图数据
         private void initLineDataSet() {
 
-            lineDataSet = new LineDataSet(null ,"");    // 向折线图添加数据
+            lineDataSet = new LineDataSet(null, "");    // 向折线图添加数据
             lineDataSet.setLineWidth(2.5f); //  设置折线图线的宽度
             lineDataSet.setColor(Color.parseColor("#AABCC6"));  //  线条颜色
             lineDataSet.setCircleColor(Color.parseColor("#AABCC6"));//  圆点颜色

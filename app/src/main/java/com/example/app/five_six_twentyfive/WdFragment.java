@@ -47,20 +47,24 @@ public class WdFragment extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            list.add(Main.num1);
-                            dynamicLineChart.addEntry(list);
-                            list.clear();
+                try {
+                    while (true) {
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    });
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                list.add(Main.num1);
+                                dynamicLineChart.addEntry(list);
+                                list.clear();
+                            }
+                        });
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }).start();

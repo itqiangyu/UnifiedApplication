@@ -113,6 +113,7 @@ public class Login extends AppCompatActivity {
                     et_psw.setError("密码不能为空！");
                     return;
                 }
+                // 发送请求
                 Call<Result> resultCall = request.login(userName, password);
                 resultCall.enqueue(new Callback<Result>() {
                     /**
@@ -137,6 +138,7 @@ public class Login extends AppCompatActivity {
                             Toast.makeText(Login.this, body.getMsg(), Toast.LENGTH_SHORT).show();
                             return;
                         }
+
                         // 否则登录成功
                         Toast.makeText(Login.this, body.getMsg(), Toast.LENGTH_SHORT).show();
 
