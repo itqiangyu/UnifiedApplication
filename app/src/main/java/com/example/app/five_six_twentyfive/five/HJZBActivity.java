@@ -20,6 +20,7 @@ import com.example.app.R;
 import com.example.app.five_six_twentyfive.Main;
 import com.example.app.five_six_twentyfive.six.SSXSActivity;
 import com.example.app.five_six_twentyfive.twentyfive.LKCXActivity;
+import com.example.app.thirty_seven.ewm_activity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -68,6 +69,10 @@ public class HJZBActivity extends AppCompatActivity {
                     finish();
                 } else if (item.getItemId() == R.id.lkcx) {
                     Intent intent1 = new Intent(HJZBActivity.this, LKCXActivity.class);// 该页面跳转路口查询页面
+                    HJZBActivity.this.startActivity(intent1);
+                    finish();
+                }else if (item.getItemId() == R.id.ewm) {
+                    Intent intent1 = new Intent(HJZBActivity.this, ewm_activity.class);// 该页面跳转路口查询页面
                     HJZBActivity.this.startActivity(intent1);
                     finish();
                 }

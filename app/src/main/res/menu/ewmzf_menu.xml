@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--菜单列表-->
+    <item
+        android:id="@+id/menu"
+        android:title="首页"></item>
+    <item
+        android:id="@+id/hjzb"
+        android:title="环境指标"></item>
+    <item
+        android:id="@+id/ssxs"
+        android:title="实时显示"></item>
+    <item
+        android:id="@+id/lkcx"
+        android:title="路况查询"></item>
+
+</menu>

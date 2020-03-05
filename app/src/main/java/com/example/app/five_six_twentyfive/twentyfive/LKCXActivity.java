@@ -19,6 +19,7 @@ import com.example.app.R;
 import com.example.app.five_six_twentyfive.Main;
 import com.example.app.five_six_twentyfive.five.HJZBActivity;
 import com.example.app.five_six_twentyfive.six.SSXSActivity;
+import com.example.app.thirty_seven.ewm_activity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -70,6 +71,10 @@ public class LKCXActivity extends AppCompatActivity {
                 } else if (item.getItemId() == R.id.ssxs) {
                     Intent intent = new Intent(LKCXActivity.this, SSXSActivity.class);// 该页面跳转实时显示页面
                     LKCXActivity.this.startActivity(intent);
+                    finish();
+                }else if (item.getItemId() == R.id.ewm) {
+                    Intent intent1 = new Intent(LKCXActivity.this, ewm_activity.class);// 该页面跳转路口查询页面
+                    LKCXActivity.this.startActivity(intent1);
                     finish();
                 }
                 return true;

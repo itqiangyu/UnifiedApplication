@@ -16,6 +16,7 @@ import com.example.app.five_six_twentyfive.six.SSXSActivity;
 import com.example.app.five_six_twentyfive.twentyfive.LKCXActivity;
 import com.example.app.retrofit.IDataInformation;
 import com.example.app.retrofit.pojo.DataInformation;
+import com.example.app.thirty_seven.ewm_activity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -62,8 +63,11 @@ public class Main extends AppCompatActivity {
             /** 通过setOnMenuItemClickListener接口调用已有的menu布局 **/
             @Override
             public boolean onMenuItemClick(MenuItem item) {/** 控制item的点击事件 **/
-
-                if (item.getItemId() == R.id.hjzb) {
+                if (item.getItemId() == R.id.ewm) {
+                    Intent intent = new Intent(Main.this, ewm_activity.class);// 该页面跳转环境指标页面
+                    Main.this.startActivity(intent);
+                    finish();
+                } else if (item.getItemId() == R.id.hjzb) {
                     Intent intent = new Intent(Main.this, HJZBActivity.class);// 该页面跳转环境指标页面
                     Main.this.startActivity(intent);
                     finish();

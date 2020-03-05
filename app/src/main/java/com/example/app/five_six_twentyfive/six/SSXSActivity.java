@@ -24,6 +24,7 @@ import com.example.app.five_six_twentyfive.SdFragment;
 import com.example.app.five_six_twentyfive.WdFragment;
 import com.example.app.five_six_twentyfive.five.HJZBActivity;
 import com.example.app.five_six_twentyfive.twentyfive.LKCXActivity;
+import com.example.app.thirty_seven.ewm_activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -242,6 +243,10 @@ public class SSXSActivity extends AppCompatActivity implements View.OnClickListe
                 }  else if (item.getItemId() == R.id.lkcx) {
                     Intent intent = new Intent(SSXSActivity.this, LKCXActivity.class);// 该页面跳转路况查询页面
                     SSXSActivity.this.startActivity(intent);
+                    //finish();
+                }else if (item.getItemId() == R.id.ewm) {
+                    Intent intent1 = new Intent(SSXSActivity.this, ewm_activity.class);// 该页面跳转路口查询页面
+                    SSXSActivity.this.startActivity(intent1);
                     //finish();
                 }
                 return true;

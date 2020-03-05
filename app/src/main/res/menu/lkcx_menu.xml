@@ -17,5 +17,8 @@
         android:title="实时显示"
         android:id="@+id/ssxs">
     </item>
+    <item
+        android:id="@+id/ewm"
+        android:title="二维码支付"></item>
 
 </menu>

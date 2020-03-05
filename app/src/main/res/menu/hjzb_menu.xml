@@ -16,5 +16,8 @@
         android:title="路况查询"
         android:id="@+id/lkcx">
     </item>
+    <item
+        android:id="@+id/ewm"
+        android:title="二维码支付"></item>
 
 </menu>

@@ -13,7 +13,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <!-- android:theme="@style/AppTheme"：已修改，去掉顶部标题栏以及状态栏 -->
-
+        <activity
+            android:name=".thirty_seven.ewm_activity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".login_register.Retrieve"
             android:screenOrientation="landscape" /> <!--找回密码-->

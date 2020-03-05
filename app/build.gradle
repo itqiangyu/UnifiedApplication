@@ -37,7 +37,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-
+    /*二维码框架*/
+    implementation 'cn.yipianfengye.android:zxing-library:2.2'
     /*网络框架*/
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
